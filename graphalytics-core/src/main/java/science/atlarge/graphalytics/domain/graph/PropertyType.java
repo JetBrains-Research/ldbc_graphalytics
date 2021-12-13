@@ -31,6 +31,10 @@ public enum PropertyType {
 	 */
 	INTEGER,
 	/**
+	 * Property is a string.
+	 */
+	STRING,
+	/**
 	 * Property is a real number.
 	 */
 	REAL;
@@ -44,6 +48,8 @@ public enum PropertyType {
 			case "int":
 			case "integer":
 				return INTEGER;
+			case "string":
+				return STRING;
 			case "real":
 				return REAL;
 		}
