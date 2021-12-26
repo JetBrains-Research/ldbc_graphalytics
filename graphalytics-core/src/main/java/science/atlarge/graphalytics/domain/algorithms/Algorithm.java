@@ -21,10 +21,7 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import science.atlarge.graphalytics.domain.algorithms.EmptyParameters.EmptyParametersFactory;
-import science.atlarge.graphalytics.validation.rule.EpsilonValidationRule;
-import science.atlarge.graphalytics.validation.rule.EquivalenceValidationRule;
-import science.atlarge.graphalytics.validation.rule.MatchLongValidationRule;
-import science.atlarge.graphalytics.validation.rule.ValidationRule;
+import science.atlarge.graphalytics.validation.rule.*;
 
 /**
  * An exhaustive enumeration of the algorithms supported by the Graphalytics benchmark suite.
@@ -41,7 +38,8 @@ public enum Algorithm {
 	LCC("LCC", "Local clustering coefficient", EmptyParametersFactory.class, EpsilonValidationRule.class),
 	PR("PR", "PageRank", PageRankParameters.PageRankParametersFactory.class, EpsilonValidationRule.class),
 	SSSP("SSSP", "Single source shortest paths", SingleSourceShortestPathsParameters.SingleSourceShortestPathsParametersFactory.class, EpsilonValidationRule.class),
-	WCC("WCC", "Connected components", EmptyParametersFactory.class, EquivalenceValidationRule.class);
+	WCC("WCC", "Connected components", EmptyParametersFactory.class, EquivalenceValidationRule.class),
+	APR("APR", "All pairs context-free-language reachability", AllPairsReachabilityParameters.AllPairsParametersParametersFactory.class, VertexSetValidationRule.class);
 
 	private static final Logger LOG = LogManager.getLogger();
 
