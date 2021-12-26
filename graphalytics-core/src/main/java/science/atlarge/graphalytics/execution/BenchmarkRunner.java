@@ -33,6 +33,7 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import science.atlarge.graphalytics.validation.rule.EpsilonValidationRule;
 import science.atlarge.graphalytics.validation.rule.ValidationRule;
+import science.atlarge.graphalytics.validation.rule.VertexSetValidationRule;
 
 import java.io.*;
 import java.math.BigDecimal;
@@ -157,6 +158,10 @@ public class BenchmarkRunner {
 			VertexValidator<?> validator;
 			if(validationRule instanceof EpsilonValidationRule) {
 				validator = new DoubleVertexValidator(benchmarkRunSetup.getOutputDir(),
+						benchmarkRunSetup.getValidationDir(),
+						validationRule, true);
+			} else if (validationRule instanceof VertexSetValidationRule) {
+				validator = new SetVertexValidator(benchmarkRunSetup.getOutputDir(),
 						benchmarkRunSetup.getValidationDir(),
 						validationRule, true);
 			} else {
