@@ -8,25 +8,29 @@ import science.atlarge.graphalytics.domain.graph.PropertyList;
 import science.atlarge.graphalytics.domain.graph.PropertyType;
 
 /**
- * Parameters for the execution of the context-free-language reachability algorithm.
+ * Parameters for the execution of the all pairs context-free-language reachability algorithm.
  *
  * @author Vladimir Kutuev
  */
-public final class CflReachabilityParameters extends AlgorithmParameters {
+public final class AllPairsReachabilityParameters extends AlgorithmParameters {
 
 	private static final String LABEL_PROPERTY_PROPERTY = "label-property";
 	private static final String GRAMMAR_PATH_PROPERTY = "grammar-path";
+	private static final String START_SYMBOL_PROPERTY = "start-symbol";
 
 	private final String labelPropertyName;
 	private final String grammarPath;
+	private final String startSymbol;
 
 	/**
 	 * @param labelPropertyName name of the edge property that represents edge label
 	 * @param grammarPath       path to file with context-free grammar
+	 * @param startSymbol       start non-terminal symbol
 	 */
-	public CflReachabilityParameters(String labelPropertyName, String grammarPath) {
+	public AllPairsReachabilityParameters(String labelPropertyName, String grammarPath, String startSymbol) {
 		this.labelPropertyName = labelPropertyName;
 		this.grammarPath = grammarPath;
+		this.startSymbol = startSymbol;
 	}
 
 	/**
@@ -48,20 +52,21 @@ public final class CflReachabilityParameters extends AlgorithmParameters {
 		return new PropertyList(new Property(labelPropertyName, PropertyType.STRING));
 	}
 
-	public static final class CflReachabilityParametersParametersFactory implements
-			ParameterFactory<CflReachabilityParameters> {
+	public static final class AllPairsParametersParametersFactory implements
+			ParameterFactory<AllPairsReachabilityParameters> {
 
 		@Override
-		public CflReachabilityParameters fromConfiguration(Configuration configuration)
+		public AllPairsReachabilityParameters fromConfiguration(Configuration configuration)
 				throws InvalidConfigurationException {
-			return new CflReachabilityParameters(ConfigurationUtil.getString(configuration, LABEL_PROPERTY_PROPERTY),
-					ConfigurationUtil.getString(configuration, GRAMMAR_PATH_PROPERTY));
+			return new AllPairsReachabilityParameters(ConfigurationUtil.getString(configuration, LABEL_PROPERTY_PROPERTY),
+					ConfigurationUtil.getString(configuration, GRAMMAR_PATH_PROPERTY),
+					ConfigurationUtil.getString(configuration, START_SYMBOL_PROPERTY));
 		}
 	}
 
 	@Override
-	public String toString() { return String.format("CFLR[%s]", getDescription()); }
+	public String toString() { return String.format("APR[%s]", getDescription()); }
 
 	@Override
-	public String getDescription() { return String.format("prop=%s, grammar=%s", labelPropertyName, grammarPath); }
+	public String getDescription() { return String.format("prop=%s, grammar=%s, start-symbol=%s", labelPropertyName, grammarPath, startSymbol); }
 }
