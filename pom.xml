@@ -19,8 +19,8 @@
 	</properties>
 
 	<scm>
-		<developerConnection>scm:git:git@github.com:ldbc/ldbc_graphalytics.git</developerConnection>
-		<url>https://github.com/ldbc/ldbc_graphalytics</url>
+		<developerConnection>scm:git:git@github.com:JetBrains-Research/ldbc_graphalytics.git</developerConnection>
+		<url>https://github.com/JetBrains-Research/ldbc_graphalytics</url>
 	</scm>
 
 	<dependencies>
